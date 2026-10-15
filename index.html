@@ -1,0 +1,1153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Junie Perez · IT Consultant, Software Engineer, AI Automation</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='13' fill='%235b5bf6'/%3E%3Ccircle cx='24' cy='8.5' r='6.5' fill='%230ea5a4'/%3E%3Cpolygon points='16,17 24,30 8,30' fill='%23ea6c13'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://junieperezdev.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://junieperezdev.github.io/">
+<meta property="og:title" content="Junie Perez · IT Consultant, Senior Software Engineer, AI Automation Engineer">
+<meta property="og:description" content="I help businesses replace paper, spreadsheets and copy-paste with software that runs on its own.">
+<meta property="og:image" content="https://junieperezdev.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Junie Perez: IT Consultant, Senior Software Engineer, AI Automation Engineer">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="IT Consultant, Senior Software Engineer and AI Automation Engineer. Business software, integrations and AI automation for clients in the Philippines and overseas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: editorial 4/8 split (after Fewer): each section's numbered label and intro sit in a sticky left column,
+   its content in the wide right one. Sticky numbered nav + reading-progress bar for navigation.
+   Shape language: each role has a shape AND a colour (square/indigo = consulting, circle/teal = engineering,
+   triangle/orange = automation), used in the hero drawing, keys, tables and the footer, so roles read even in
+   greyscale. Figures are numbered like a technical report and drawn in HTML so the words stay real text;
+   charts are drawn to scale. Dashed grey boxes are manual steps. */
+:root {
+  --bg: #f5f6f9;
+  --surface: #ffffff;
+  --ink: #14151f;
+  --muted: #5b5e72;
+  --rule: #dcdee8;
+  --line: #8b8ea3;
+  --consult: #4b46e0;
+  --build: #0b7a70;
+  --auto: #b44a06;
+  --consult-fill: #5b5bf6;
+  --build-fill: #0ea5a4;
+  --auto-fill: #ea6c13;
+  --consult-tint: #ebeafe;
+  --build-tint: #e0f4f1;
+  --auto-tint: #fdeee3;
+  --btn-bg: #14151f;
+  --btn-fg: #f5f6f9;
+  --btn-hover: #4b46e0;
+  --font-display: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-body: "Archivo", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1016; --surface: #171926; --ink: #eceef6; --muted: #9a9db3; --rule: #2a2d3d; --line: #6d7090;
+    --consult: #a3a0ff; --build: #45d3c1; --auto: #ff9147;
+    --consult-fill: #8b84ff; --build-fill: #2dd4bf; --auto-fill: #fb923c;
+    --consult-tint: #232246; --build-tint: #0f2f2b; --auto-tint: #352418;
+    --btn-bg: #eceef6; --btn-fg: #0f1016; --btn-hover: #a3a0ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1016; --surface: #171926; --ink: #eceef6; --muted: #9a9db3; --rule: #2a2d3d; --line: #6d7090;
+  --consult: #a3a0ff; --build: #45d3c1; --auto: #ff9147;
+  --consult-fill: #8b84ff; --build-fill: #2dd4bf; --auto-fill: #fb923c;
+  --consult-tint: #232246; --build-tint: #0f2f2b; --auto-tint: #352418;
+  --btn-bg: #eceef6; --btn-fg: #0f1016; --btn-hover: #a3a0ff;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+a { color: inherit; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--consult); outline-offset: 3px; }
+[id] { scroll-margin-top: 84px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.nowrap { white-space: nowrap; }
+
+.wrap {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap {
+    padding-left: max(40px, env(safe-area-inset-left, 0px));
+    padding-right: max(40px, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* Shared type */
+.label {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+h2 {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 600;
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -.015em;
+}
+h3 {
+  font-family: var(--font-display);
+  font-stretch: 106%;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+.intro { color: var(--muted); max-width: 38ch; }
+.dash { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.dash li { position: relative; padding-left: 1.2em; }
+.dash li::before { content: "–"; position: absolute; left: 0; color: var(--muted); }
+
+/* Role shapes: shape + colour */
+.shape { display: inline-block; width: 12px; height: 12px; flex: none; background: var(--kf); }
+.shape--ci { border-radius: 50%; }
+.shape--tr { clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.r-consult { --tc: var(--consult); --kf: var(--consult-fill); }
+.r-build { --tc: var(--build); --kf: var(--build-fill); }
+.r-auto { --tc: var(--auto); --kf: var(--auto-fill); }
+.shapes { display: inline-flex; gap: 6px; align-items: center; }
+
+/* Header: sticky, numbered, with reading progress */
+.site-head {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 20;
+  background: var(--bg);
+  border-bottom: 1px solid var(--ink);
+}
+.head-row { display: flex; align-items: center; justify-content: space-between; gap: 12px 28px; padding-block: 12px; }
+.name {
+  display: inline-flex; align-items: center; gap: 10px; flex: none;
+  font-family: var(--font-display); font-stretch: 112%; font-weight: 600; font-size: 1.05rem;
+  letter-spacing: -.01em; text-decoration: none;
+}
+.mark { display: inline-flex; gap: 3px; align-items: center; }
+.mark .shape { width: 9px; height: 9px; }
+.head-nav { display: flex; align-items: center; gap: 2px 22px; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.head-nav::-webkit-scrollbar { display: none; }
+.head-nav a {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  padding-block: 6px; white-space: nowrap; text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+.head-nav a:hover { border-bottom-color: var(--line); }
+.head-nav a[aria-current="location"] { border-bottom-color: var(--ink); }
+.nav-n { font-family: var(--font-mono); font-size: .68rem; color: var(--muted); }
+.head-nav .nav-cta { padding: 5px 12px; border: 1px solid var(--ink); border-radius: 2px; }
+.head-nav .nav-cta:hover, .head-nav .nav-cta[aria-current="location"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.progress { height: 3px; }
+.progress span { display: block; height: 100%; width: 0; background: var(--consult-fill); }
+@media (max-width: 860px) {
+  .nav-n { display: none; }
+  .head-nav { gap: 2px 16px; }
+}
+
+/* Hero */
+.hero { padding-block: clamp(40px, 6vw, 88px) clamp(48px, 7vw, 96px); }
+.roles {
+  list-style: none;
+  margin: 0 0 clamp(20px, 3vw, 32px);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  font-weight: 500;
+  font-size: .95rem;
+}
+.roles li { display: inline-flex; align-items: center; gap: 10px; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+.statement {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 500;
+  font-size: clamp(2rem, 1rem + 3vw, 3.6rem);
+  line-height: 1.05;
+  letter-spacing: -.022em;
+  max-width: 22ch;
+}
+.lede { max-width: 54ch; font-size: 1.125rem; margin-top: clamp(24px, 3vw, 36px); }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; margin-top: 26px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  text-decoration: none;
+  font-weight: 600;
+  padding: .85em 1.3em;
+  border-radius: 2px;
+  transition: background-color .15s ease;
+}
+.btn:hover { background: var(--btn-hover); }
+.textlink { font-weight: 500; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.textlink:hover { text-decoration-thickness: 2px; }
+.hero-side { display: grid; gap: 20px; }
+.compose { margin: 0; }
+.compose svg { display: block; width: 100%; max-width: 380px; height: auto; }
+.c-grid { stroke: var(--rule); stroke-width: 1; fill: none; }
+.c-consult { fill: var(--consult-fill); }
+.c-build { fill: var(--build-fill); }
+.c-auto { fill: var(--auto-fill); }
+.c-link { stroke: var(--ink); stroke-width: 1.5; }
+.c-head { fill: var(--ink); }
+.c-leader { stroke: var(--line); stroke-width: 1; stroke-dasharray: 3 3; }
+.c-big { font-family: var(--font-display); font-stretch: 112%; font-weight: 600; font-size: 22px; fill: var(--ink); }
+.c-small { font-family: var(--font-mono); font-size: 11px; letter-spacing: .06em; fill: var(--muted); }
+.dot { fill: var(--ink); }
+@media (prefers-reduced-motion: no-preference) {
+  .dot-1 { animation: drop-a 2.6s ease-in-out infinite; }
+  .dot-2 { animation: drop-b 2.6s ease-in-out 1.3s infinite; }
+}
+@keyframes drop-a { 0% { transform: translateY(0); opacity: 0; } 20%, 80% { opacity: 1; } 100% { transform: translateY(34px); opacity: 0; } }
+@keyframes drop-b { 0% { transform: translateY(0); opacity: 0; } 20%, 80% { opacity: 1; } 100% { transform: translateY(20px); opacity: 0; } }
+.facts { margin: 0; display: grid; gap: 8px; }
+.facts div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; }
+.facts dt { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: .3em; }
+.facts dd { margin: 0; font-size: .95rem; }
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: clamp(44px, 6vw, 72px);
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+.metric { display: grid; gap: 12px; align-content: start; }
+.fig-num {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 1.2rem + 1.6vw, 2.6rem);
+  line-height: 1;
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+}
+.cap { color: var(--muted); font-size: .92rem; line-height: 1.45; max-width: 30ch; }
+.mini { position: relative; height: 10px; max-width: 180px; }
+.mini-years { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 3px; }
+.mini-years span { background: var(--build-fill); border-radius: 1px; }
+.mini-bars { display: grid; gap: 2px; align-content: center; }
+.mini-bars span { display: block; height: 4px; width: var(--w); background: var(--line); }
+.mini-bars .hi { background: var(--auto-fill); }
+.mini-ruler {
+  background: repeating-linear-gradient(to right, var(--line) 0 1px, transparent 1px 8.3333%);
+  border-right: 1px solid var(--line);
+}
+.mini-ruler::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; border-bottom: 1px solid var(--line); }
+.mini-ruler span { position: absolute; top: 50%; width: 10px; height: 10px; border-radius: 50%; transform: translate(-50%, -50%); }
+.m-done { left: 50%; background: var(--auto-fill); }
+.m-plan { left: 100%; background: var(--bg); border: 1.5px solid var(--ink); }
+.mini-budget { background: var(--build-tint); border: 1px solid var(--build); }
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-side { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; }
+  .ledger { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+}
+@media (max-width: 560px) {
+  .hero-side { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Sections */
+.sec { border-top: 1px solid var(--rule); padding-block: clamp(56px, 8vw, 112px); }
+.split { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(28px, 5vw, 72px); }
+.sec-head { align-self: start; display: grid; gap: 14px; }
+.sec-label { display: inline-flex; align-items: center; gap: 10px; }
+.sec-n { font-family: var(--font-mono); font-size: .72rem; color: var(--ink); border: 1px solid var(--ink); border-radius: 2px; padding: 1px 6px; }
+@media (min-width: 861px) {
+  .sec-head { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 92px); }
+}
+@media (max-width: 860px) {
+  .split { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Figures: report-style diagrams */
+.fig { margin: 0; display: grid; gap: 12px; min-width: 0; }
+.fig figcaption { font-size: .88rem; line-height: 1.45; color: var(--muted); max-width: 64ch; }
+.fig-n { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); margin-right: 8px; }
+.flow { display: flex; align-items: stretch; min-width: 0; }
+.node {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  font-size: .86rem;
+  line-height: 1.3;
+}
+.node--manual { border-style: dashed; background: transparent; }
+.node--build { border-color: var(--build); background: var(--build-tint); }
+.node--auto { border-color: var(--auto); background: var(--auto-tint); }
+.tag { font-family: var(--font-mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.node--build .tag { color: var(--build); }
+.node--auto .tag { color: var(--auto); }
+.arr { flex: 0 0 22px; position: relative; align-self: stretch; min-height: 22px; }
+.arr::before { content: ""; position: absolute; left: 3px; right: 7px; top: 50%; border-top: 1px solid var(--line); }
+.arr::after {
+  content: ""; position: absolute; right: 3px; top: calc(50% - 4px);
+  border-left: 6px solid var(--line); border-top: 4px solid transparent; border-bottom: 4px solid transparent;
+}
+.ba { display: grid; gap: 10px; }
+.ba-row { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 12px; align-items: center; }
+.ba-label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.hub { display: grid; grid-template-columns: minmax(0, 1fr) 22px minmax(0, 1fr) 22px minmax(0, 1fr); align-items: center; }
+.hub-col { display: grid; gap: 8px; }
+.hub .arr { height: 100%; }
+.stages {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(6, minmax(0, 1fr));
+  border: 1px solid var(--auto); background: var(--auto-tint); border-radius: 2px;
+}
+.stages li { padding: 10px 10px 12px; display: grid; gap: 3px; align-content: start; font-size: .84rem; line-height: 1.25; border-left: 1px solid var(--auto); min-width: 0; }
+.stages li:first-child { border-left: 0; }
+.stages .tag { color: var(--auto); }
+.bars { display: grid; gap: 8px; }
+.bar-row { display: grid; grid-template-columns: 58px minmax(0, 1fr) 96px; gap: 12px; align-items: center; }
+.bar { display: block; height: 12px; width: var(--w); background: var(--line); border-radius: 1px; }
+.bar--after { background: var(--auto-fill); }
+.bar-val { font-family: var(--font-mono); font-size: .72rem; color: var(--muted); }
+.budget { height: 12px; margin-top: 10px; border: 1px solid var(--build); border-top: 0; }
+.budget-label { margin-top: 6px; text-align: center; font-family: var(--font-mono); font-size: .74rem; letter-spacing: .04em; color: var(--build); }
+.chat { width: 100%; max-width: 440px; border: 1px solid var(--line); background: var(--surface); border-radius: 2px; display: grid; gap: 10px; padding-bottom: 14px; }
+.chat-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+.chat-name { font-weight: 600; font-size: .92rem; }
+.msg { margin: 0 14px; padding: 9px 12px; max-width: 84%; font-size: .9rem; line-height: 1.4; border-radius: 12px; overflow-wrap: anywhere; }
+.msg time { display: block; margin-top: 3px; font-family: var(--font-mono); font-size: .64rem; color: var(--muted); }
+.msg--in { justify-self: start; background: var(--bg); border: 1px solid var(--rule); border-bottom-left-radius: 3px; }
+.msg--out { justify-self: end; background: var(--auto-tint); border: 1px solid var(--auto); border-bottom-right-radius: 3px; }
+.chip { justify-self: center; margin: 0 14px; padding: 3px 8px; border: 1px solid currentColor; font-family: var(--font-mono); font-size: .64rem; letter-spacing: .07em; text-transform: uppercase; }
+.chip--auto { color: var(--auto); }
+.chip--staff { color: var(--muted); }
+@media (max-width: 1099px) {
+  .stages { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .stages li:nth-child(4) { border-left: 0; }
+  .stages li:nth-child(n+4) { border-top: 1px solid var(--auto); }
+}
+@media (max-width: 620px) {
+  .flow { flex-direction: column; }
+  .hub { grid-template-columns: minmax(0, 1fr); }
+  .hub .arr { height: 22px; }
+  .arr::before { left: 50%; right: auto; top: 3px; bottom: 7px; border-top: 0; border-left: 1px solid var(--line); }
+  .arr::after {
+    left: calc(50% - 4px); right: auto; top: auto; bottom: 3px;
+    border-left: 4px solid transparent; border-right: 4px solid transparent; border-top: 6px solid var(--line); border-bottom: 0;
+  }
+  .ba-row { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .bar-row { grid-template-columns: 52px minmax(0, 1fr) 80px; gap: 8px; }
+}
+
+/* Tables */
+.data { width: 100%; border-collapse: collapse; font-size: .95rem; line-height: 1.45; }
+.data th, .data td { text-align: left; vertical-align: top; padding: 14px 18px 14px 0; border-bottom: 1px solid var(--rule); }
+.data th:last-child, .data td:last-child { padding-right: 0; }
+.data thead th {
+  font-family: var(--font-mono); font-size: .7rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--muted); padding-top: 0; padding-bottom: 10px; border-bottom: 1px solid var(--ink);
+}
+.data tbody th { font-weight: 600; }
+.data td { color: var(--muted); }
+.sectors tbody th { width: 27%; }
+.sectors .roles-cell { width: 76px; }
+.skills tbody th { width: 30%; font-family: var(--font-mono); font-size: .76rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; padding-top: 17px; }
+.skills td { color: var(--ink); }
+@media (max-width: 720px) {
+  .data thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .data, .data tbody, .data tr, .data th, .data td { display: block; width: 100%; }
+  .data tr { padding-block: 14px; border-bottom: 1px solid var(--rule); }
+  .data th, .data td { border: 0; padding: 3px 0; }
+  .sectors tbody th, .skills tbody th, .sectors .roles-cell { width: 100%; }
+  .sectors td::before {
+    content: attr(data-label); display: block; margin-top: 6px;
+    font-family: var(--font-mono); font-size: .64rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+  }
+  .skills tbody th { padding-top: 3px; }
+}
+
+/* Services */
+.svc {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 16px 28px;
+  padding-block: 32px;
+  border-top: 1px solid var(--rule);
+}
+.svc:first-child { border-top: 0; padding-top: 4px; }
+.svc-name { display: grid; gap: 10px; align-content: start; }
+.svc-role {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-mono); font-size: .75rem; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--tc);
+}
+.svc-body { display: grid; gap: 18px; }
+.svc .fig { grid-column: 1 / -1; margin-top: 8px; }
+.first { display: grid; gap: 4px; padding-top: 14px; border-top: 1px dashed var(--rule); font-weight: 500; }
+@media (max-width: 620px) { .svc { grid-template-columns: minmax(0, 1fr); } }
+
+/* Project sheets */
+.job { padding-block: 36px; border-top: 1px solid var(--rule); display: grid; gap: 20px; }
+.job:first-child { border-top: 0; padding-top: 4px; }
+.job-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+  font-family: var(--font-mono); font-size: .78rem; letter-spacing: .04em; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 12px;
+}
+.job h3 { font-stretch: 112%; font-size: clamp(1.25rem, 1rem + .8vw, 1.6rem); margin-bottom: 6px; }
+.job-client { color: var(--muted); }
+.sheet { margin: 0; display: grid; gap: 12px; }
+.sheet div { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 16px; }
+.sheet dt { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); padding-top: .3em; }
+.sheet dd { margin: 0; }
+.sheet .result { font-weight: 500; }
+.sheet .tools { font-family: var(--font-mono); font-size: .84rem; color: var(--muted); padding-top: .1em; }
+@media (max-width: 520px) { .sheet div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+
+/* Side builds */
+.lab-block { display: grid; gap: 16px; padding-top: 36px; border-top: 1px solid var(--rule); }
+.lab { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 16px; }
+.lab li { background: var(--surface); border: 1px solid var(--rule); padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.lab p { font-size: .97rem; }
+.lab .tools { margin-top: auto; padding-top: 6px; font-family: var(--font-mono); font-size: .76rem; color: var(--muted); }
+
+/* Process stepper */
+.stepper { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.stepper li { position: relative; padding-top: 56px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.st-n {
+  position: absolute; top: 0; left: 0; z-index: 1;
+  width: 40px; height: 40px; border-radius: 50%;
+  border: 1.5px solid var(--ink); background: var(--bg);
+  display: grid; place-items: center;
+  font-family: var(--font-display); font-stretch: 112%; font-weight: 600; font-size: 1.05rem;
+}
+.stepper li::before { content: ""; position: absolute; top: 20px; left: 40px; right: -24px; border-top: 1px solid var(--line); }
+.stepper li:last-child::before { display: none; }
+.stepper p { color: var(--muted); font-size: .95rem; }
+@media (max-width: 1099px) {
+  .stepper { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 36px; }
+  .stepper li:nth-child(2)::before { display: none; }
+}
+@media (max-width: 520px) {
+  .stepper { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+  .stepper li { padding-top: 0; padding-left: 56px; min-height: 40px; }
+  .stepper li::before { top: 40px; left: 20px; right: auto; bottom: -28px; border-top: 0; border-left: 1px solid var(--line); }
+  .stepper li:nth-child(2)::before { display: block; }
+  .stepper li:last-child::before { display: none; }
+}
+
+/* About: history chart and tables */
+.about { display: grid; gap: 44px; }
+.about-text { display: grid; gap: 16px; max-width: 62ch; }
+.sub-block { display: grid; gap: 14px; }
+.gantt { display: grid; gap: 12px; }
+.g-row { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 4px 18px; align-items: center; }
+.g-role { display: block; font-weight: 600; font-size: .92rem; line-height: 1.3; }
+.g-meta { display: block; font-size: .8rem; color: var(--muted); }
+.g-track {
+  position: relative; height: 14px;
+  background: repeating-linear-gradient(to right, var(--rule) 0 1px, transparent 1px 15.3846%);
+  border-right: 1px solid var(--rule);
+}
+.g-bar { position: absolute; top: 2px; bottom: 2px; left: var(--s); width: var(--w); min-width: 4px; background: var(--line); border-radius: 1px; }
+.g-bar--now { background: var(--build-fill); }
+.g-axis { position: relative; height: 16px; font-family: var(--font-mono); font-size: .68rem; color: var(--muted); }
+.g-axis span { position: absolute; top: 0; left: var(--x); transform: translateX(-50%); font-variant-numeric: tabular-nums; }
+.g-axis span:first-child { transform: none; }
+.edu { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.edu li { display: grid; grid-template-columns: 104px minmax(0, 1.2fr) minmax(0, 1fr); gap: 4px 18px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
+.t-year { font-family: var(--font-mono); font-size: .8rem; color: var(--muted); padding-top: .2em; font-variant-numeric: tabular-nums; }
+.t-org { color: var(--muted); }
+@media (max-width: 620px) {
+  .g-row { grid-template-columns: minmax(0, 1fr); }
+  .g-row--axis > :first-child { display: none; }
+  .edu li { grid-template-columns: 84px minmax(0, 1fr); }
+  .t-org { grid-column: 2; }
+}
+
+/* Contact */
+.contact-title {
+  font-family: var(--font-display);
+  font-stretch: 112%;
+  font-weight: 500;
+  font-size: clamp(1.9rem, 1.1rem + 2.8vw, 3.4rem);
+  line-height: 1.06;
+  letter-spacing: -.02em;
+  max-width: 18ch;
+}
+.contact-body { display: grid; gap: 18px; }
+.contact-body .intro { max-width: 52ch; }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin-top: 8px; }
+.email {
+  font-family: var(--font-display);
+  font-stretch: 106%;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 1rem + .9vw, 1.6rem);
+  user-select: all;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.copy {
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  padding: .6em .95em;
+  cursor: pointer;
+}
+.copy:hover { background: var(--ink); color: var(--bg); }
+.copy-status { font-family: var(--font-mono); font-size: .75rem; color: var(--muted); min-height: 1.2em; }
+
+/* Footer */
+.site-foot { border-top: 1px solid var(--rule); }
+.foot-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; padding-block: 20px; }
+.foot-key { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.foot-key span.fk { display: inline-flex; align-items: center; gap: 8px; }
+.back { text-decoration: none; }
+.back:hover { color: var(--ink); }
+.strip { display: grid; grid-template-columns: repeat(3, 1fr); height: 10px; }
+.strip span:nth-child(1) { background: var(--consult-fill); }
+.strip span:nth-child(2) { background: var(--build-fill); }
+.strip span:nth-child(3) { background: var(--auto-fill); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="name" href="#top">
+      <span class="mark" aria-hidden="true"><span class="shape r-consult"></span><span class="shape shape--ci r-build"></span><span class="shape shape--tr r-auto"></span></span>
+      Junie Perez
+    </a>
+    <nav class="head-nav" aria-label="Sections">
+      <a href="#services"><span class="nav-n">01</span>Services</a>
+      <a href="#clients"><span class="nav-n">02</span>Clients</a>
+      <a href="#work"><span class="nav-n">03</span>Work</a>
+      <a href="#process"><span class="nav-n">04</span>Process</a>
+      <a href="#about"><span class="nav-n">05</span>About</a>
+      <a class="nav-cta" href="#contact">Contact</a>
+    </nav>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="statement">
+    <div class="wrap">
+      <ul class="roles" aria-label="Roles">
+        <li><span class="shape r-consult" aria-hidden="true"></span>IT Consultant</li>
+        <li><span class="shape shape--ci r-build" aria-hidden="true"></span>Senior Software Engineer</li>
+        <li><span class="shape shape--tr r-auto" aria-hidden="true"></span>AI Automation Engineer</li>
+      </ul>
+      <div class="hero-grid">
+        <div>
+          <h1 class="statement" id="statement">I help businesses replace paper, spreadsheets and <span class="nowrap">copy-paste</span> with software that runs on its own.</h1>
+          <p class="lede">Twelve years of building business systems, APIs and test automation in C#/.NET and Python. I lead a delivery team at a US-listed financial services company and take on part-time consulting and contract work.</p>
+          <div class="cta">
+            <a class="btn" href="#contact">Get in touch <span aria-hidden="true">→</span></a>
+            <a class="textlink" href="#work">See selected work</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <figure class="compose">
+            <svg viewBox="0 0 340 440" role="img" aria-label="How a project moves: plan with IT consulting, build with software engineering, then automate with AI automation.">
+              <defs>
+                <pattern id="hero-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path class="c-grid" d="M20 0H0V20"/></pattern>
+              </defs>
+              <rect width="340" height="440" fill="url(#hero-grid)"/>
+              <rect class="c-consult" x="36" y="24" width="104" height="104"/>
+              <line class="c-link" x1="88" y1="128" x2="88" y2="172"/>
+              <polygon class="c-head" points="82,171 94,171 88,180"/>
+              <circle class="c-build" cx="88" cy="232" r="52"/>
+              <line class="c-link" x1="88" y1="284" x2="88" y2="310"/>
+              <polygon class="c-head" points="82,309 94,309 88,318"/>
+              <polygon class="c-auto" points="88,318 146,418 30,418"/>
+              <circle class="dot dot-1" cx="88" cy="134" r="3.5"/>
+              <circle class="dot dot-2" cx="88" cy="288" r="3.5"/>
+              <line class="c-leader" x1="148" y1="76" x2="172" y2="76"/>
+              <line class="c-leader" x1="148" y1="232" x2="172" y2="232"/>
+              <line class="c-leader" x1="130" y1="380" x2="172" y2="380"/>
+              <text class="c-big" x="180" y="74">Plan</text>
+              <text class="c-small" x="180" y="94">IT CONSULTING</text>
+              <text class="c-big" x="180" y="230">Build</text>
+              <text class="c-small" x="180" y="250">SOFTWARE ENGINEERING</text>
+              <text class="c-big" x="180" y="378">Automate</text>
+              <text class="c-small" x="180" y="398">AI AUTOMATION</text>
+            </svg>
+          </figure>
+          <dl class="facts">
+            <div><dt>Based in</dt><dd>Philippines, UTC+8</dd></div>
+            <div><dt>Works with</dt><dd>Clients in the Philippines and overseas</dd></div>
+            <div><dt>Languages</dt><dd>English, Filipino, Japanese</dd></div>
+            <div><dt>Open to</dt><dd>Part-time consulting and contracts</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="ledger" aria-label="Track record">
+        <div class="metric">
+          <p class="fig-num">12 yrs</p>
+          <div class="mini mini-years" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <p class="cap">building business software, since 2014</p>
+        </div>
+        <div class="metric">
+          <p class="fig-num">&gt;50%</p>
+          <div class="mini mini-bars" aria-hidden="true"><span style="--w: 100%"></span><span class="hi" style="--w: 48%"></span></div>
+          <p class="cap">less end-to-end delivery effort after I brought AI-assisted development to my team</p>
+        </div>
+        <div class="metric">
+          <p class="fig-num">~6 mo</p>
+          <div class="mini mini-ruler" aria-hidden="true"><span class="m-done"></span><span class="m-plan"></span></div>
+          <p class="cap">ahead of schedule on a programme I helped deliver</p>
+        </div>
+        <div class="metric">
+          <p class="fig-num">&lt;20 ms</p>
+          <div class="mini mini-budget" aria-hidden="true"></div>
+          <p class="cap">request handling on .NET trading services behind a FIX API gateway</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="services" aria-labelledby="services-h">
+    <div class="wrap split">
+      <header class="sec-head">
+        <p class="label sec-label"><span class="sec-n">01</span>Services</p>
+        <h2 id="services-h">Three ways I can help</h2>
+        <p class="intro">Most projects start with advice, need some building, and end with something that runs without anyone touching it.</p>
+      </header>
+      <div>
+        <article class="svc r-consult">
+          <div class="svc-name">
+            <p class="svc-role"><span class="shape" aria-hidden="true"></span>IT Consulting</p>
+            <h3>Advice before you spend</h3>
+          </div>
+          <div class="svc-body">
+            <ul class="dash">
+              <li>Map how work moves through your business and where the hours and errors go.</li>
+              <li>Vendor-neutral advice on POS, booking, accounting and HR software.</li>
+              <li>A written plan with costs and priorities, in plain language.</li>
+            </ul>
+            <p class="first"><span class="label">Good first project</span>A one-week review of one process, with a written report.</p>
+          </div>
+          <figure class="fig">
+            <div class="flow" role="img" aria-label="Order comes in, is typed into a spreadsheet, typed again into accounting, then a report is built by hand before the owner sees the numbers. The three middle steps are manual.">
+              <span class="node">Order comes in</span>
+              <span class="arr" aria-hidden="true"></span>
+              <span class="node node--manual"><span class="tag">Manual</span>Typed into a spreadsheet</span>
+              <span class="arr" aria-hidden="true"></span>
+              <span class="node node--manual"><span class="tag">Manual</span>Typed again into accounting</span>
+              <span class="arr" aria-hidden="true"></span>
+              <span class="node node--manual"><span class="tag">Manual</span>Weekly report built by hand</span>
+              <span class="arr" aria-hidden="true"></span>
+              <span class="node">Owner sees the numbers</span>
+            </div>
+            <figcaption><span class="fig-n">Fig. 1</span>Example review finding: three manual steps between an order and the numbers, each one a candidate for automation.</figcaption>
+          </figure>
+        </article>
+
+        <article class="svc r-build">
+          <div class="svc-name">
+            <p class="svc-role"><span class="shape shape--ci" aria-hidden="true"></span>Software Engineering</p>
+            <h3>Software that fits how you work</h3>
+          </div>
+          <div class="svc-body">
+            <ul class="dash">
+              <li>Custom web systems and internal tools in C#/.NET, Python and TypeScript.</li>
+              <li>Integrations between the systems you already pay for, through their APIs.</li>
+              <li>Automated testing with Playwright, and upkeep of older .NET and ColdFusion apps.</li>
+            </ul>
+            <p class="first"><span class="label">Good first project</span>One integration or one internal tool, with a fixed scope and price.</p>
+          </div>
+          <figure class="fig">
+            <div class="hub" role="img" aria-label="Online bookings and POS sales feed one integration, which updates accounting, inventory and a daily report.">
+              <div class="hub-col">
+                <span class="node">Online bookings</span>
+                <span class="node">POS sales</span>
+              </div>
+              <span class="arr" aria-hidden="true"></span>
+              <span class="node node--build"><span class="tag">API</span>One integration</span>
+              <span class="arr" aria-hidden="true"></span>
+              <div class="hub-col">
+                <span class="node">Accounting</span>
+                <span class="node">Inventory</span>
+                <span class="node">Daily report</span>
+              </div>
+            </div>
+            <figcaption><span class="fig-n">Fig. 2</span>Example: one integration keeps the systems you already pay for in step, so nobody copies numbers between them.</figcaption>
+          </figure>
+        </article>
+
+        <article class="svc r-auto">
+          <div class="svc-name">
+            <p class="svc-role"><span class="shape shape--tr" aria-hidden="true"></span>AI Automation</p>
+            <h3>Let repetitive work run itself</h3>
+          </div>
+          <div class="svc-body">
+            <ul class="dash">
+              <li>Instant answers to the questions you get every day on Messenger and email. A late-night "how much?" gets a reply, and anything unusual goes to your staff.</li>
+              <li>Receipts, invoices and forms read straight into your spreadsheet or system.</li>
+              <li>Private AI that runs on your own computer, for data that can't leave the office.</li>
+            </ul>
+            <p class="first"><span class="label">Good first project</span>One workflow, automated end to end.</p>
+          </div>
+          <figure class="fig">
+            <div class="chat" role="img" aria-label="Example chat: at 11:04 PM a guest asks the price for two adults on Saturday and gets an instant reply with the rate and a booking link. A follow-up question about bringing a dog is passed to the front desk.">
+              <div class="chat-head"><span class="chat-name">Your Resort</span><span class="label">Messenger</span></div>
+              <p class="msg msg--in">Hi! How much for 2 adults this Saturday?<time>11:04 PM</time></p>
+              <p class="msg msg--out">Hi! A deluxe room for 2 is ₱3,800 a night with breakfast, and Saturday is open. Book here: yourresort.com/book<time>11:04 PM</time></p>
+              <p class="chip chip--auto">Answered automatically</p>
+              <p class="msg msg--in">Can we bring our dog?<time>11:06 PM</time></p>
+              <p class="chip chip--staff">Passed to the front desk</p>
+            </div>
+            <figcaption><span class="fig-n">Fig. 3</span>Example: a late-night enquiry answered in seconds, with anything unusual handed to a person.</figcaption>
+          </figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="clients" aria-labelledby="clients-h">
+    <div class="wrap split">
+      <header class="sec-head">
+        <p class="label sec-label"><span class="sec-n">02</span>Clients</p>
+        <h2 id="clients-h">Businesses I help</h2>
+        <p class="intro">Small and mid-size businesses in the Philippines and overseas, and software teams that need senior help.</p>
+      </header>
+      <div class="table-wrap">
+        <table class="data sectors">
+          <thead>
+            <tr><th scope="col">Business</th><th scope="col">What slows them down</th><th scope="col">What I set up</th><th scope="col">Roles</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Hotels, resorts and tour operators</th>
+              <td data-label="What slows them down">OTAs typically keep 10 to 30% of each booking, and enquiries pile up after hours.</td>
+              <td data-label="What I set up">Direct booking, instant replies, and the booking reports behind them.</td>
+              <td class="roles-cell" data-label="Roles"><span class="shapes"><span class="shape r-consult" aria-hidden="true"></span><span class="shape shape--tr r-auto" aria-hidden="true"></span></span><span class="sr">Consulting and automation</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Retail, wholesale and distribution</th>
+              <td data-label="What slows them down">Stock, orders and sales reports kept in spreadsheets and rebuilt by hand every week.</td>
+              <td data-label="What I set up">The systems you already use, connected so the numbers update themselves.</td>
+              <td class="roles-cell" data-label="Roles"><span class="shapes"><span class="shape shape--ci r-build" aria-hidden="true"></span><span class="shape shape--tr r-auto" aria-hidden="true"></span></span><span class="sr">Engineering and automation</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Clinics, schools and cooperatives</th>
+              <td data-label="What slows them down">Paper forms, records in several places, and privacy law to comply with.</td>
+              <td data-label="What I set up">Digital forms, one searchable record, and private AI on machines you control.</td>
+              <td class="roles-cell" data-label="Roles"><span class="shapes"><span class="shape r-consult" aria-hidden="true"></span><span class="shape shape--ci r-build" aria-hidden="true"></span><span class="shape shape--tr r-auto" aria-hidden="true"></span></span><span class="sr">Consulting, engineering and automation</span></td>
+            </tr>
+            <tr>
+              <th scope="row">Software teams, BPOs and agencies</th>
+              <td data-label="What slows them down">Releases wait on manual regression testing, and AI tools were bought but never changed how the team works.</td>
+              <td data-label="What I set up">Playwright test suites, and coaching through AI-assisted delivery.</td>
+              <td class="roles-cell" data-label="Roles"><span class="shapes"><span class="shape shape--ci r-build" aria-hidden="true"></span><span class="shape shape--tr r-auto" aria-hidden="true"></span></span><span class="sr">Engineering and automation</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="work" aria-labelledby="work-h">
+    <div class="wrap split">
+      <header class="sec-head">
+        <p class="label sec-label"><span class="sec-n">03</span>Work</p>
+        <h2 id="work-h">Four projects, 2014 to 2026</h2>
+        <p class="intro">From a regional retail group's head office to enterprise delivery teams. I describe employers instead of naming them. Results are as measured at the time.</p>
+      </header>
+      <div>
+        <article class="job">
+          <div>
+            <div class="job-meta"><span>2025–26</span><span class="shapes"><span class="shape shape--tr r-auto" aria-hidden="true"></span><span class="shape r-consult" aria-hidden="true"></span></span><span class="sr">Automation and consulting</span></div>
+            <h3>AI-assisted delivery for a software team</h3>
+            <p class="job-client">US-listed financial services company · Team lead</p>
+          </div>
+          <figure class="fig">
+            <ol class="stages" aria-label="AI tools used at all six stages of delivery">
+              <li><span class="tag">AI</span>Requirements</li>
+              <li><span class="tag">AI</span>Stories</li>
+              <li><span class="tag">AI</span>Design</li>
+              <li><span class="tag">AI</span>Code</li>
+              <li><span class="tag">AI</span>Tests</li>
+              <li><span class="tag">AI</span>Aftercare</li>
+            </ol>
+            <div class="bars" role="img" aria-label="End-to-end team effort: before is the baseline, after is under half of it.">
+              <div class="bar-row"><span class="ba-label">Before</span><span><span class="bar" style="--w: 100%"></span></span><span class="bar-val">baseline</span></div>
+              <div class="bar-row"><span class="ba-label">After</span><span><span class="bar bar--after" style="--w: 48%"></span></span><span class="bar-val">under half</span></div>
+            </div>
+            <figcaption><span class="fig-n">Fig. 4</span>AI tools at every stage of delivery, not only for writing code, and the team's end-to-end effort.</figcaption>
+          </figure>
+          <dl class="sheet">
+            <div><dt>Before</dt><dd>AI tools were not part of how the team worked. Deployment was already automated.</dd></div>
+            <div><dt>Change</dt><dd>GitHub Copilot, Claude Code and Cursor used across the whole cycle, from requirements and stories to design, code, shared test templates and aftercare.</dd></div>
+            <div><dt>Result</dt><dd class="result">More than 50% less end-to-end effort. Helped deliver a programme about six months ahead of schedule. Presented the approach to executive leadership and a company-wide audience.</dd></div>
+            <div><dt>Stack</dt><dd class="tools">C# · .NET · Python · TypeScript · Azure DevOps · GitHub</dd></div>
+          </dl>
+        </article>
+
+        <article class="job">
+          <div>
+            <div class="job-meta"><span>2022–26</span><span class="shapes"><span class="shape shape--ci r-build" aria-hidden="true"></span></span><span class="sr">Engineering</span></div>
+            <h3>Regression tests that run themselves</h3>
+            <p class="job-client">US-listed financial services company · Software engineer</p>
+          </div>
+          <figure class="fig">
+            <div class="ba" role="img" aria-label="Before: a code change went through manual checks before release. After: a code change is built and passes an automated regression suite before release.">
+              <div class="ba-row">
+                <span class="ba-label">Before</span>
+                <div class="flow">
+                  <span class="node">Code change</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node node--manual"><span class="tag">Manual</span>Checks by hand</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node">Release</span>
+                </div>
+              </div>
+              <div class="ba-row">
+                <span class="ba-label">After</span>
+                <div class="flow">
+                  <span class="node">Code change</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node">Build</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node node--build"><span class="tag">Automated</span>Regression suite</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node">Release</span>
+                </div>
+              </div>
+            </div>
+            <figcaption><span class="fig-n">Fig. 5</span>The regression pass moved from people to the pipeline.</figcaption>
+          </figure>
+          <dl class="sheet">
+            <div><dt>Before</dt><dd>Critical paths were checked by hand before each release.</dd></div>
+            <div><dt>Change</dt><dd>An automated regression suite in Playwright and Python, with shared test templates written together with the team's QA engineer.</dd></div>
+            <div><dt>Result</dt><dd class="result">The suite grows as features ship. Defects surface earlier, and every release gets the same repeatable regression pass.</dd></div>
+            <div><dt>Stack</dt><dd class="tools">Playwright · Python · Azure DevOps · GitHub</dd></div>
+          </dl>
+        </article>
+
+        <article class="job">
+          <div>
+            <div class="job-meta"><span>2022</span><span class="shapes"><span class="shape shape--ci r-build" aria-hidden="true"></span></span><span class="sr">Engineering</span></div>
+            <h3>Trading services under 20 ms</h3>
+            <p class="job-client">Trading technology firm · C# developer</p>
+          </div>
+          <figure class="fig">
+            <div role="img" aria-label="An order request passes through a FIX gateway, a .NET Core service and SQL Server or PostgreSQL, and the response returns, all in under 20 milliseconds.">
+              <div class="flow">
+                <span class="node">Order request</span>
+                <span class="arr" aria-hidden="true"></span>
+                <span class="node">FIX gateway</span>
+                <span class="arr" aria-hidden="true"></span>
+                <span class="node node--build"><span class="tag">Built</span>.NET Core service</span>
+                <span class="arr" aria-hidden="true"></span>
+                <span class="node">SQL Server / PostgreSQL</span>
+                <span class="arr" aria-hidden="true"></span>
+                <span class="node">Response</span>
+              </div>
+              <div class="budget" aria-hidden="true"></div>
+              <p class="budget-label">Under 20 ms, end to end</p>
+            </div>
+            <figcaption><span class="fig-n">Fig. 6</span>The latency budget every change had to fit.</figcaption>
+          </figure>
+          <dl class="sheet">
+            <div><dt>Brief</dt><dd>.NET Core services behind a FIX API gateway, on SQL Server and PostgreSQL, where a slow query counts as a defect.</dd></div>
+            <div><dt>Result</dt><dd class="result">Request handling held under 20 ms. Transaction-processing faults diagnosed and fixed inside that latency budget.</dd></div>
+            <div><dt>Stack</dt><dd class="tools">.NET Core · C# · SQL Server · PostgreSQL · FIX API</dd></div>
+          </dl>
+        </article>
+
+        <article class="job">
+          <div>
+            <div class="job-meta"><span>2014–19</span><span class="shapes"><span class="shape r-consult" aria-hidden="true"></span><span class="shape shape--ci r-build" aria-hidden="true"></span></span><span class="sr">Consulting and engineering</span></div>
+            <h3>Head-office finance, off paper</h3>
+            <p class="job-client">Regional mall and supermarket group · Programmer</p>
+          </div>
+          <figure class="fig">
+            <div class="ba" role="img" aria-label="Before: a paper form was re-keyed into one system and then re-keyed into another. After: a web form saves one record that finance and administration both use.">
+              <div class="ba-row">
+                <span class="ba-label">Before</span>
+                <div class="flow">
+                  <span class="node">Paper form</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node node--manual"><span class="tag">Manual</span>Re-keyed into one system</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node node--manual"><span class="tag">Manual</span>Re-keyed into another</span>
+                </div>
+              </div>
+              <div class="ba-row">
+                <span class="ba-label">After</span>
+                <div class="flow">
+                  <span class="node node--build"><span class="tag">Built</span>Web form</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node node--build"><span class="tag">Built</span>One record</span>
+                  <span class="arr" aria-hidden="true"></span>
+                  <span class="node">Finance and admin teams</span>
+                </div>
+              </div>
+            </div>
+            <figcaption><span class="fig-n">Fig. 7</span>Entered once, instead of re-keyed between systems.</figcaption>
+          </figure>
+          <dl class="sheet">
+            <div><dt>Before</dt><dd>Fixed-asset records and cheque requests were handled on paper and re-keyed between systems.</dd></div>
+            <div><dt>Change</dt><dd>Two internal systems for the head-office finance and administration teams, one for importing fixed assets and one for cheque requests.</dd></div>
+            <div><dt>Result</dt><dd class="result">Less paper and re-keying. Users supported across the group's business locations with troubleshooting, training and data reconciliation.</dd></div>
+            <div><dt>Stack</dt><dd class="tools">C# · ASP.NET · SQL Server · MySQL</dd></div>
+          </dl>
+        </article>
+
+        <div class="lab-block">
+          <p class="label">Side builds</p>
+          <h3>Automation I run myself</h3>
+          <ul class="lab">
+            <li>
+              <span class="shape shape--tr r-auto" aria-hidden="true"></span>
+              <h3>Audio to text</h3>
+              <p>Turns podcasts and recordings into searchable text. Uses the publisher's own transcript when one exists, otherwise cuts the audio at pauses and runs Whisper speech-to-text.</p>
+              <p class="tools">Python · ffmpeg · Whisper</p>
+            </li>
+            <li>
+              <span class="shape shape--tr r-auto" aria-hidden="true"></span>
+              <h3>Unattended publishing</h3>
+              <p>Collects data every night, renders charts and voice-over into short videos, and schedules them on YouTube and Facebook through their official APIs.</p>
+              <p class="tools">Python · YouTube API · Graph API</p>
+            </li>
+            <li>
+              <span class="shape shape--tr r-auto" aria-hidden="true"></span>
+              <h3>Offline AI on a USB drive</h3>
+              <p>A local language model that runs on Windows, Mac or Linux with no internet connection, for documents that should never leave the office.</p>
+              <p class="tools">llamafile · local LLMs</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="process" aria-labelledby="process-h">
+    <div class="wrap split">
+      <header class="sec-head">
+        <p class="label sec-label"><span class="sec-n">04</span>Process</p>
+        <h2 id="process-h">From first call to handover</h2>
+      </header>
+      <ol class="stepper">
+        <li><span class="st-n" aria-hidden="true">1</span><h3>Call</h3><p>30 minutes, no charge. You describe the problem and I tell you plainly whether software is the right fix.</p></li>
+        <li><span class="st-n" aria-hidden="true">2</span><h3>Plan</h3><p>A short written plan covering what to build or buy, what it costs, and what it should save.</p></li>
+        <li><span class="st-n" aria-hidden="true">3</span><h3>Build</h3><p>Small pieces, with a working demo every week so you see progress early.</p></li>
+        <li><span class="st-n" aria-hidden="true">4</span><h3>Handover</h3><p>Documentation, training for your staff, and optional monthly support.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="about" aria-labelledby="about-h">
+    <div class="wrap split">
+      <header class="sec-head">
+        <p class="label sec-label"><span class="sec-n">05</span>About</p>
+        <h2 id="about-h">Junie Perez</h2>
+        <p class="intro">Senior Software Engineer and Team Lead</p>
+      </header>
+      <div class="about">
+        <div class="about-text">
+          <p>I started in 2014 as a programmer at a regional mall and supermarket group, building internal systems for its head-office finance and administration teams. Since then I have built client web applications, low-latency trading services and enterprise APIs.</p>
+          <p>Today I am a senior software engineer and team lead at a US-listed financial services company. I lead a small cross-functional team, set our code review and testing standards, and introduced the AI-assisted workflow that cut our delivery effort by more than half.</p>
+          <p>I am also studying for an MS in Computer Science at UP Cebu.</p>
+        </div>
+
+        <figure class="fig sub-block">
+          <p class="label">Experience</p>
+          <div class="gantt" role="img" aria-label="Work history from 2014 to 2026: junior programmer from May 2014 to February 2019, senior assistant R&amp;D engineer from April 2019 to February 2022, C# software developer from February to July 2022, software engineer II from July 2022 to June 2025, and senior software engineer and team lead since June 2025.">
+            <div class="g-row">
+              <div><span class="g-role">Junior Programmer</span><span class="g-meta">Regional mall and supermarket group · 2014–2019</span></div>
+              <div class="g-track"><span class="g-bar" style="--s: 2.56%; --w: 36.54%"></span></div>
+            </div>
+            <div class="g-row">
+              <div><span class="g-role">Senior Assistant R&amp;D Engineer</span><span class="g-meta">Software development company · 2019–2022</span></div>
+              <div class="g-track"><span class="g-bar" style="--s: 40.38%; --w: 21.79%"></span></div>
+            </div>
+            <div class="g-row">
+              <div><span class="g-role">C# Software Developer</span><span class="g-meta">Trading technology firm · 2022</span></div>
+              <div class="g-track"><span class="g-bar" style="--s: 62.18%; --w: 3.21%"></span></div>
+            </div>
+            <div class="g-row">
+              <div><span class="g-role">Software Engineer II</span><span class="g-meta">US-listed financial services company · 2022–2025</span></div>
+              <div class="g-track"><span class="g-bar" style="--s: 65.38%; --w: 22.44%"></span></div>
+            </div>
+            <div class="g-row">
+              <div><span class="g-role">Senior Software Engineer (Team Lead)</span><span class="g-meta">US-listed financial services company · 2025–now</span></div>
+              <div class="g-track"><span class="g-bar g-bar--now" style="--s: 87.82%; --w: 10.26%"></span></div>
+            </div>
+            <div class="g-row g-row--axis" aria-hidden="true">
+              <span></span>
+              <div class="g-axis"><span style="--x: 0%">2014</span><span style="--x: 15.38%">2016</span><span style="--x: 30.77%">2018</span><span style="--x: 46.15%">2020</span><span style="--x: 61.54%">2022</span><span style="--x: 76.92%">2024</span><span style="--x: 92.31%">2026</span></div>
+            </div>
+          </div>
+          <figcaption><span class="fig-n">Fig. 8</span>Twelve years of work, drawn to scale by month. Teal marks the current role.</figcaption>
+        </figure>
+
+        <div class="sub-block">
+          <p class="label">Education</p>
+          <ol class="edu">
+            <li><span class="t-year">2023–now</span><span>MS Computer Science (in progress)</span><span class="t-org">University of the Philippines Cebu</span></li>
+            <li><span class="t-year">2010–2014</span><span>BS Information Technology</span><span class="t-org">AMA Computer Learning College</span></li>
+          </ol>
+        </div>
+
+        <div class="sub-block">
+          <p class="label">Skills</p>
+          <table class="data skills">
+            <thead><tr><th scope="col">Area</th><th scope="col">Tools and methods</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Languages</th><td>C#, Python, TypeScript, JavaScript, SQL</td></tr>
+              <tr><th scope="row">Backend</th><td>.NET, .NET Core, ASP.NET, REST APIs, microservices, FIX API</td></tr>
+              <tr><th scope="row">Data</th><td>SQL Server, PostgreSQL, MySQL, T-SQL</td></tr>
+              <tr><th scope="row">Cloud and DevOps</th><td>Microsoft Azure, Azure DevOps, Docker, Kubernetes, GitHub, CI/CD pipelines</td></tr>
+              <tr><th scope="row">Testing</th><td>Playwright, Python test automation, test-driven development</td></tr>
+              <tr><th scope="row">AI-assisted delivery</th><td>GitHub Copilot, Claude Code, Cursor, AI-assisted test generation and code review</td></tr>
+              <tr><th scope="row">Leadership</th><td>Technical leadership, mentoring, Agile and Scrum, stakeholder management</td></tr>
+              <tr><th scope="row">Legacy upkeep</th><td>ColdFusion, jQuery, .NET Framework services</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="contact" aria-labelledby="contact-h">
+    <div class="wrap split">
+      <header class="sec-head">
+        <p class="label sec-label"><span class="sec-n">06</span>Contact</p>
+      </header>
+      <div class="contact-body">
+        <h2 class="contact-title" id="contact-h">Tell me what is slowing your team down.</h2>
+        <p class="intro">Email works best. Say what the task is, who does it now, and how often it comes up.</p>
+        <div class="email-row">
+          <span class="email" id="email">junieperez.dev@gmail.com</span>
+          <button class="copy" type="button" id="copy-email">Copy</button>
+        </div>
+        <p class="copy-status" id="copy-status" aria-live="polite"></p>
+        <p class="label">Philippines, UTC+8 · Clients worldwide</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-row">
+    <p class="label">© 2026 Junie Perez</p>
+    <p class="label foot-key">
+      <span class="fk"><span class="shape r-consult" aria-hidden="true"></span>Consulting</span>
+      <span class="fk"><span class="shape shape--ci r-build" aria-hidden="true"></span>Engineering</span>
+      <span class="fk"><span class="shape shape--tr r-auto" aria-hidden="true"></span>Automation</span>
+    </p>
+    <a class="label back" href="#top">Back to top ↑</a>
+  </div>
+  <div class="strip" aria-hidden="true"><span></span><span></span><span></span></div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var email = document.getElementById('email');
+  var status = document.getElementById('copy-status');
+  if (btn && email && status) {
+    var selectEmail = function () {
+      var range = document.createRange();
+      range.selectNodeContents(email);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      status.textContent = 'Selected. Press Ctrl+C (or Cmd+C) to copy.';
+    };
+    btn.addEventListener('click', function () {
+      var text = email.textContent.trim();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copied';
+          status.textContent = 'Email address copied.';
+          setTimeout(function () { btn.textContent = 'Copy'; status.textContent = ''; }, 2000);
+        }, selectEmail);
+      } else {
+        selectEmail();
+      }
+    });
+  }
+
+  // Reading progress and the current section in the nav
+  var bar = document.getElementById('progress-bar');
+  var links = Array.prototype.slice.call(document.querySelectorAll('.head-nav a[href^="#"]'));
+  var sections = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  var queued = false;
+  function update() {
+    queued = false;
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    if (bar) bar.style.width = (p * 100).toFixed(2) + '%';
+    var line = window.innerHeight * 0.35;
+    var current = -1;
+    sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= line) current = i; });
+    if (p > 0.995) current = sections.length - 1;
+    links.forEach(function (a, i) {
+      if (i === current) a.setAttribute('aria-current', 'location');
+      else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', function () {
+    if (!queued) { queued = true; window.requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+</body>
+</html>
