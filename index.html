@@ -741,6 +741,71 @@ h3 {
 @keyframes shimmer { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(340%); } }
 @keyframes typing { 0%, 100% { transform: none; opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
 
+/* More hover interactions: menu underline sweep, figure cards, cursor spotlight, magnetic button */
+.head-nav a:not(.nav-cta) { position: relative; }
+.head-nav a:not(.nav-cta)::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: var(--consult-fill);
+  transform: scaleX(0); transform-origin: right; transition: transform .3s cubic-bezier(.2,.7,.2,1);
+}
+.head-nav a:nth-child(3n+2)::after { background: var(--build-fill); }
+.head-nav a:nth-child(3n)::after { background: var(--auto-fill); }
+.head-nav a:not(.nav-cta):not([aria-current]):hover { border-bottom-color: transparent; }
+.head-nav a:not(.nav-cta):hover::after { transform: scaleX(1); transform-origin: left; }
+.head-nav a .nav-n { transition: color .2s ease; }
+.head-nav a:hover .nav-n { color: var(--ink); }
+.roles li { cursor: default; transition: color .2s ease; }
+.roles li .shape { transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+.roles li:hover { color: var(--tc, var(--ink)); }
+.roles li:hover .shape { transform: scale(1.5) rotate(90deg); animation: none; }
+.facts div { transition: transform .25s ease; }
+.facts div:hover { transform: translateX(6px); }
+.facts div:hover dt { color: var(--consult); }
+.metric { position: relative; padding: 14px; margin: -14px; border-radius: 2px; transition: background-color .25s ease; }
+.metric:nth-child(1) { --kf: var(--build-fill); --kt: var(--build-tint); --ki: var(--build); }
+.metric:nth-child(2) { --kf: var(--auto-fill); --kt: var(--auto-tint); --ki: var(--auto); }
+.metric:nth-child(3) { --kf: var(--consult-fill); --kt: var(--consult-tint); --ki: var(--consult); }
+.metric:nth-child(4) { --kf: var(--build-fill); --kt: var(--build-tint); --ki: var(--build); }
+.metric:hover { background: var(--kt); }
+.metric .fig-num { transition: color .25s ease; }
+.metric:hover .fig-num { color: var(--ki); }
+.metric:hover .mini-bars span, .metric:hover .mini-years span { animation: regrow .7s cubic-bezier(.2,.7,.2,1) both; }
+.metric:hover .mini-years span { animation-delay: calc(var(--i, 0) * .04s); }
+@keyframes regrow { from { transform: scaleX(0); } to { transform: none; } }
+.mini-years span { transform-origin: bottom; }
+.metric:hover .mini-years span { animation-name: regrow-y; }
+@keyframes regrow-y { from { transform: scaleY(0); } to { transform: none; } }
+.stages li { cursor: default; transition: transform .2s ease; }
+.stages li:hover { background: var(--auto-tint); transform: translateY(-3px); animation: none; }
+.msg { transition: transform .2s ease; }
+.msg:hover { transform: scale(1.02); }
+.bar-row:hover .bar { filter: brightness(1.1) saturate(1.3); }
+.bar-row:hover .bar-val { color: var(--ink); }
+.fig-n { transition: background-color .2s ease, color .2s ease; }
+.fig:hover .fig-n { background: var(--accent, var(--ink)); color: #fff; padding-inline: 4px; }
+/* Side-build cards: lift, coloured top edge, and a soft spotlight that follows the cursor */
+.lab li {
+  position: relative;
+  background-image: radial-gradient(circle 180px at var(--mx, 50%) var(--my, 50%), var(--auto-tint), transparent 70%);
+  background-size: 0 0; background-repeat: no-repeat;
+  transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+}
+.lab li:hover { background-size: 100% 100%; border-color: var(--auto); box-shadow: inset 0 3px 0 var(--auto-fill); transform: translateY(-4px); }
+.lab li .shape { transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
+.lab li:hover .shape { transform: rotate(360deg) scale(1.3); }
+.email { background: linear-gradient(var(--auto-fill), var(--auto-fill)) 0 100% / 0 2px no-repeat; transition: background-size .35s cubic-bezier(.2,.7,.2,1), color .2s ease; }
+.email:hover { background-size: 100% 2px; color: var(--auto); }
+.back { display: inline-block; transition: transform .2s ease, color .2s ease; }
+.back:hover { transform: translateY(-3px); }
+.foot-key .fk { cursor: default; }
+.foot-key .shape { transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+.foot-key .fk:hover .shape { transform: scale(1.6) rotate(90deg); }
+.strip { transition: grid-template-columns .4s ease; }
+.strip:hover { grid-template-columns: 1fr 1fr 1fr; }
+.site-foot:has(.fk:nth-child(1):hover) .strip { grid-template-columns: 3fr 1fr 1fr; }
+.site-foot:has(.fk:nth-child(2):hover) .strip { grid-template-columns: 1fr 3fr 1fr; }
+.site-foot:has(.fk:nth-child(3):hover) .strip { grid-template-columns: 1fr 1fr 3fr; }
+.btn { transition: background-color .15s ease, translate .25s cubic-bezier(.2,.7,.2,1); }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
@@ -1352,6 +1417,25 @@ h3 {
     });
   }
   if (reduce || !('IntersectionObserver' in window)) return;
+
+  // Spotlight that follows the cursor on side-build cards, and a button that leans toward the pointer
+  if (window.matchMedia('(pointer: fine)').matches) {
+    Array.prototype.forEach.call(document.querySelectorAll('.lab li'), function (card) {
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.btn'), function (b) {
+      b.addEventListener('pointermove', function (e) {
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) / r.width, y = (e.clientY - r.top - r.height / 2) / r.height;
+        b.style.translate = (x * 8).toFixed(1) + 'px ' + (y * 6).toFixed(1) + 'px';
+      });
+      b.addEventListener('pointerleave', function () { b.style.translate = ''; });
+    });
+  }
   var root = document.documentElement;
   root.classList.add('motion');
   function mark(list, cls, step) {
