@@ -670,6 +670,77 @@ h3 {
 .motion .node { opacity: 0; translate: -8px 0; transition: opacity .5s ease, translate .5s ease, transform .2s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease; transition-delay: calc(var(--n, 0) * .09s + .15s), calc(var(--n, 0) * .09s + .15s), 0s, 0s, 0s, 0s; }
 .motion .in .node { opacity: 1; translate: 0 0; }
 
+/* Looping animations. Each loop says something: things orbit and pulse in the hero, "automated" and "live"
+   markers keep ticking, work moves through the stages, the chat replays. All off when motion is reduced. */
+.o-ring, .o-frame, .o-pulse { fill: none; stroke-width: 1.2; }
+.o-ring { stroke: var(--build); stroke-dasharray: 2 5; opacity: .6; }
+.o-frame { stroke: var(--consult); stroke-dasharray: 6 6; opacity: .55; }
+.o-pulse { stroke: var(--auto-fill); opacity: 0; }
+.o-dot { fill: var(--build-fill); }
+.o-spin, .o-pulse { transform-box: view-box; }
+.typing { display: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .o-spin { transform-origin: 88px 232px; animation: spin 9s linear infinite; }
+  .o-frame, .o-ring { animation: march 1.4s linear infinite; }
+  .o-ring { animation-duration: 2s; animation-direction: reverse; }
+  .o-pulse { transform-origin: 88px 385px; animation: pulse-out 3.2s ease-out infinite; }
+  .roles .shape { animation: hop 4.5s cubic-bezier(.3,1.6,.5,1) infinite; }
+  .roles li:nth-child(2) .shape { animation-delay: .25s; }
+  .roles li:nth-child(3) .shape { animation-delay: .5s; }
+  .btn span { animation: nudge 3s ease-in-out infinite; }
+  .btn:hover span { animation: none; }
+  /* "Live" dot on built and automated parts: they keep running */
+  .node--build .tag::before, .node--auto .tag::before, .chip--auto::before, .g-bar--now::after {
+    content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: 1px;
+    background: currentColor; animation: live 1.8s ease-in-out infinite;
+  }
+  .g-bar--now::after { position: absolute; right: -3px; top: 50%; margin: -4px 0 0; width: 8px; height: 8px; background: var(--build-fill); color: var(--build-fill); }
+  /* Work passes through the six AI stages, one after another */
+  .stages li { animation: stage 6s ease-in-out infinite; }
+  .stages li:nth-child(2) { animation-delay: .5s; }
+  .stages li:nth-child(3) { animation-delay: 1s; }
+  .stages li:nth-child(4) { animation-delay: 1.5s; }
+  .stages li:nth-child(5) { animation-delay: 2s; }
+  .stages li:nth-child(6) { animation-delay: 2.5s; }
+  /* A request crosses the latency budget, well inside it */
+  .budget { position: relative; }
+  .budget::after {
+    content: ""; position: absolute; left: 0; bottom: -4px; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--build-fill); animation: dash-across 2.4s cubic-bezier(.6,0,.4,1) infinite;
+  }
+  /* The process steps light up in turn */
+  .stepper .st-n { animation: step-ring 6s ease-out infinite; }
+  .stepper li:nth-child(2) .st-n { animation-delay: 1.5s; }
+  .stepper li:nth-child(3) .st-n { animation-delay: 3s; }
+  .stepper li:nth-child(4) .st-n { animation-delay: 4.5s; }
+  /* Footer colour strip shimmers */
+  .strip { position: relative; overflow: hidden; }
+  .strip::after {
+    content: ""; position: absolute; inset: 0; width: 30%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    animation: shimmer 5s ease-in-out infinite;
+  }
+  /* Chat replays: the script shows each line in turn, with a typing indicator before replies */
+  .chat.replay .msg, .chat.replay .chip { transition: opacity .4s ease, transform .4s ease; }
+  .chat.replay .wait { opacity: 0; transform: translateY(6px); }
+  .chat.replay .typing.on { display: inline-flex; }
+  .typing { justify-self: end; gap: 4px; margin: 0 14px; padding: 10px 12px; border: 1px solid var(--auto); background: var(--auto-tint); border-radius: 12px; border-bottom-right-radius: 3px; }
+  .typing i { width: 6px; height: 6px; border-radius: 50%; background: var(--auto); animation: typing 1s ease-in-out infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; }
+  .typing i:nth-child(3) { animation-delay: .3s; }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes march { to { stroke-dashoffset: -12; } }
+@keyframes pulse-out { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.45); opacity: 0; } }
+@keyframes hop { 0%, 8%, 100% { transform: none; } 4% { transform: translateY(-5px) rotate(20deg); } }
+@keyframes nudge { 0%, 70%, 100% { transform: none; } 80% { transform: translateX(5px); } 90% { transform: translateX(0); } }
+@keyframes live { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.7); } }
+@keyframes stage { 0%, 22%, 100% { background: transparent; } 6%, 12% { background: var(--auto-tint); } }
+@keyframes dash-across { 0% { left: 0; opacity: 0; } 10% { opacity: 1; } 80% { left: calc(100% - 7px); opacity: 1; } 100% { left: calc(100% - 7px); opacity: 0; } }
+@keyframes step-ring { 0% { box-shadow: 0 0 0 0 var(--kf); } 18% { box-shadow: 0 0 0 10px transparent; } 100% { box-shadow: 0 0 0 10px transparent; } }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 60%, 100% { transform: translateX(340%); } }
+@keyframes typing { 0%, 100% { transform: none; opacity: .4; } 50% { transform: translateY(-3px); opacity: 1; } }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
@@ -720,6 +791,9 @@ h3 {
                 <pattern id="hero-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path class="c-grid" d="M20 0H0V20"/></pattern>
               </defs>
               <rect width="340" height="440" fill="url(#hero-grid)"/>
+              <rect class="o-frame" x="28" y="16" width="120" height="120" aria-hidden="true"/>
+              <circle class="o-ring" cx="88" cy="232" r="64" aria-hidden="true"/>
+              <polygon class="o-pulse" points="88,318 146,418 30,418" aria-hidden="true"/>
               <rect class="c-consult" x="36" y="24" width="104" height="104"/>
               <line class="c-link" x1="88" y1="128" x2="88" y2="172"/>
               <polygon class="c-head" points="82,171 94,171 88,180"/>
@@ -727,6 +801,7 @@ h3 {
               <line class="c-link" x1="88" y1="284" x2="88" y2="310"/>
               <polygon class="c-head" points="82,309 94,309 88,318"/>
               <polygon class="c-auto" points="88,318 146,418 30,418"/>
+              <g class="o-spin" aria-hidden="true"><circle class="o-dot" cx="88" cy="168" r="4.5"/></g>
               <circle class="dot dot-1" cx="88" cy="134" r="3.5"/>
               <circle class="dot dot-2" cx="88" cy="288" r="3.5"/>
               <line class="c-leader" x1="148" y1="76" x2="172" y2="76"/>
@@ -1324,6 +1399,50 @@ h3 {
     });
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
   Array.prototype.forEach.call(document.querySelectorAll('.rv'), function (el) { io.observe(el); });
+
+  // Chat figure replays while it is on screen: lines appear in turn, with a typing indicator before the reply
+  var chat = document.querySelector('.chat');
+  if (chat) {
+    var items = Array.prototype.slice.call(chat.querySelectorAll('.msg, .chip'));
+    var typing = document.createElement('p');
+    typing.className = 'typing';
+    typing.setAttribute('aria-hidden', 'true');
+    typing.innerHTML = '<i></i><i></i><i></i>';
+    var reply = chat.querySelector('.msg--out');
+    if (reply) chat.insertBefore(typing, reply);
+    var step = 0, timer = null;
+    function tick() {
+      if (step < items.length) {
+        var el = items[step];
+        if (el === reply && !typing.classList.contains('on')) {
+          typing.classList.add('on');
+          timer = setTimeout(tick, 1300);
+          return;
+        }
+        typing.classList.remove('on');
+        el.classList.remove('wait');
+        step++;
+        timer = setTimeout(tick, step === items.length ? 4500 : 1100);
+      } else {
+        restart();
+      }
+    }
+    function restart() {
+      step = 0;
+      items.forEach(function (el) { el.classList.add('wait'); });
+      timer = setTimeout(tick, 700);
+    }
+    chat.classList.add('replay');
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting && !timer) restart();
+        else if (!en.isIntersecting && timer) {
+          clearTimeout(timer); timer = null; typing.classList.remove('on');
+          items.forEach(function (el) { el.classList.remove('wait'); });
+        }
+      });
+    }, { threshold: 0.3 }).observe(chat);
+  }
 
   if (hot && window.matchMedia('(pointer: fine)').matches) {
     var hero = document.querySelector('.hero');
