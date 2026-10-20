@@ -553,6 +553,123 @@ h3 {
 .strip span:nth-child(2) { background: var(--build-fill); }
 .strip span:nth-child(3) { background: var(--auto-fill); }
 
+/* Motion and colour accents. Each section takes one role colour; hovers use the same palette.
+   Scroll reveals only run when the script adds .motion to <html> (JS on, motion not reduced),
+   so with no script everything is simply visible. */
+#services, #process { --accent: var(--consult-fill); --accent-tint: var(--consult-tint); --accent-ink: var(--consult); }
+#clients, #about { --accent: var(--build-fill); --accent-tint: var(--build-tint); --accent-ink: var(--build); }
+#work, #contact { --accent: var(--auto-fill); --accent-tint: var(--auto-tint); --accent-ink: var(--auto); }
+.progress span { background: linear-gradient(90deg, var(--consult-fill), var(--build-fill) 55%, var(--auto-fill)); }
+.head-nav a:nth-child(3n+1)[aria-current="location"] { border-bottom-color: var(--consult-fill); }
+.head-nav a:nth-child(3n+2)[aria-current="location"] { border-bottom-color: var(--build-fill); }
+.head-nav a:nth-child(3n)[aria-current="location"] { border-bottom-color: var(--auto-fill); }
+.head-nav .nav-cta[aria-current="location"] { border-bottom-color: var(--ink); }
+.mark .shape { transition: transform .5s cubic-bezier(.3,1.6,.5,1); }
+.name:hover .mark .shape:nth-child(1) { transform: rotate(45deg); }
+.name:hover .mark .shape:nth-child(2) { transform: translateY(-3px); }
+.name:hover .mark .shape:nth-child(3) { transform: rotate(180deg); }
+.btn span { display: inline-block; transition: transform .2s ease; }
+.btn:hover span { transform: translateX(4px); }
+
+/* Section label: number badge fills with the section colour, a rule grows beside it */
+.sec-n { transition: background-color .4s ease, border-color .4s ease, color .4s ease; }
+.sec-label::after { content: ""; width: 48px; height: 2px; background: var(--accent, var(--ink)); transform-origin: left; transition: transform .8s cubic-bezier(.2,.7,.2,1) .2s; }
+.sec-head.in .sec-n, .sec:hover .sec-n { background: var(--accent); border-color: var(--accent); color: #fff; }
+.motion .sec-label::after { transform: scaleX(0); }
+.motion .sec-head.in .sec-label::after { transform: none; }
+
+/* Hero drawing: shapes drift, follow the pointer a little, and grow on hover */
+.compose svg .c-consult, .compose svg .c-build, .compose svg .c-auto {
+  transform-box: fill-box; transform-origin: center; cursor: pointer;
+  transition: translate .6s cubic-bezier(.2,.7,.2,1), scale .35s cubic-bezier(.3,1.6,.5,1), filter .3s ease;
+}
+.compose svg .c-consult { translate: calc(var(--px, 0) * -8px) calc(var(--py, 0) * -8px); }
+.compose svg .c-build { translate: calc(var(--px, 0) * 6px) calc(var(--py, 0) * 6px); }
+.compose svg .c-auto { translate: calc(var(--px, 0) * -4px) calc(var(--py, 0) * 4px); }
+.compose svg .c-consult:hover, .compose svg .c-build:hover, .compose svg .c-auto:hover { scale: 1.08; filter: saturate(1.25); }
+.compose .c-big { transition: fill .3s ease; }
+.compose[data-hot="consult"] .c-big:nth-of-type(1) { fill: var(--consult); }
+.compose[data-hot="build"] .c-big:nth-of-type(3) { fill: var(--build); }
+.compose[data-hot="auto"] .c-big:nth-of-type(5) { fill: var(--auto); }
+@media (prefers-reduced-motion: no-preference) {
+  .compose svg .c-consult { animation: drift-sq 7s ease-in-out infinite; }
+  .compose svg .c-build { animation: drift-ci 5.5s ease-in-out -2s infinite; }
+  .compose svg .c-auto { animation: drift-tr 8s ease-in-out -4s infinite; }
+  .ledger .mini-years span { animation: tick 3.6s ease-in-out infinite; animation-delay: calc(var(--i, 0) * .12s); }
+  /* A highlight travels along every arrow, one after the other */
+  .arr::before {
+    border-top: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent, var(--ink)), transparent) -100% 0 / 60% 100% no-repeat, var(--line);
+    animation: arr-run 2.8s ease-in-out infinite;
+  }
+  .flow > .arr:nth-child(4)::before, .hub > .arr:nth-of-type(3)::before { animation-delay: .35s; }
+  .flow > .arr:nth-child(6)::before { animation-delay: .7s; }
+  .flow > .arr:nth-child(8)::before { animation-delay: 1.05s; }
+}
+@keyframes drift-sq { 50% { transform: translate(-3px, -4px) rotate(-3deg); } }
+@keyframes drift-ci { 50% { transform: scale(1.04); } }
+@keyframes drift-tr { 50% { transform: translateY(4px) rotate(2deg); } }
+@keyframes tick { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+@keyframes arr-run { 0% { background-position: -100% 0, 0 0; } 60%, 100% { background-position: 250% 0, 0 0; } }
+
+/* Hover: diagram nodes, rows, jobs, steps, timeline */
+.node { transition: transform .2s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease; }
+.node:hover { transform: translateY(-2px); border-color: var(--accent-ink, var(--ink)); box-shadow: 0 3px 0 var(--accent, var(--ink)); }
+.node--manual:hover { border-color: var(--auto); background: var(--auto-tint); box-shadow: 0 3px 0 var(--auto-fill); }
+.svc { position: relative; }
+.svc::before, .job::before {
+  content: ""; position: absolute; left: -18px; top: 32px; bottom: 32px; width: 3px; background: var(--kf, var(--accent));
+  transform: scaleY(0); transform-origin: top; transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.svc:first-child::before { top: 4px; }
+.svc:hover::before, .job:hover::before { transform: none; }
+.svc:has(.svc-role .shape:not(.shape--ci):not(.shape--tr)) { --kf: var(--consult-fill); --accent: var(--consult-fill); --accent-ink: var(--consult); }
+.svc:has(.svc-role .shape--ci) { --kf: var(--build-fill); --accent: var(--build-fill); --accent-ink: var(--build); }
+.svc:has(.svc-role .shape--tr) { --kf: var(--auto-fill); --accent: var(--auto-fill); --accent-ink: var(--auto); }
+.svc-role .shape, .job-meta .shape, .roles-cell .shape { transition: transform .4s cubic-bezier(.3,1.6,.5,1); }
+.svc:hover .svc-role .shape { transform: scale(1.5) rotate(90deg); }
+.job { position: relative; }
+.job:has(.job-meta .shapes > .r-consult:first-child) { --kf: var(--consult-fill); }
+.job:has(.job-meta .shapes > .r-build:first-child) { --kf: var(--build-fill); }
+.job:has(.job-meta .shapes > .r-auto:first-child) { --kf: var(--auto-fill); }
+.job::before { top: 36px; bottom: 36px; }
+.job:hover .job-meta .shape { transform: scale(1.4); }
+.data tbody tr { transition: background-color .2s ease; }
+.data tbody tr:hover { background: var(--accent-tint, var(--surface)); }
+.data tbody tr:hover th { color: var(--accent-ink, var(--ink)); }
+.data tbody tr:hover .roles-cell .shape { transform: scale(1.35); }
+.st-n { transition: background-color .3s ease, border-color .3s ease, color .3s ease, transform .35s cubic-bezier(.3,1.6,.5,1); }
+.stepper li:nth-child(1) { --kf: var(--consult-fill); }
+.stepper li:nth-child(2) { --kf: var(--build-fill); }
+.stepper li:nth-child(3) { --kf: var(--auto-fill); }
+.stepper li:nth-child(4) { --kf: var(--consult-fill); }
+.stepper li:hover .st-n, .stepper li.in .st-n { background: var(--kf); border-color: var(--kf); color: #fff; }
+.stepper li:hover .st-n { transform: scale(1.12); }
+.stepper li::before { transform-origin: left; transition: transform .9s cubic-bezier(.2,.7,.2,1) .25s; }
+.motion .stepper li::before { transform: scaleX(0); }
+.motion .stepper li.in::before { transform: none; }
+.g-row .g-bar { transition: background-color .25s ease, transform 1s cubic-bezier(.2,.7,.2,1); }
+.g-row:hover .g-bar { background: var(--accent); }
+.g-row:hover .g-bar--now { background: var(--build); }
+.edu li { transition: background-color .2s ease; }
+.edu li:hover { background: var(--accent-tint); }
+.lab li { transition: transform .2s ease; }
+.lab li:hover { transform: translateX(4px); }
+
+/* Scroll reveals */
+.motion .rv { opacity: 0; transform: translateY(26px); transition: opacity .75s cubic-bezier(.2,.7,.2,1), transform .75s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+.motion .rv-sub { transform: translateY(12px); }
+.motion .rv.in { opacity: 1; transform: none; }
+.motion .bar, .motion .mini-bars span, .motion .g-bar { transform: scaleX(0); transform-origin: left; transition: transform 1.1s cubic-bezier(.2,.7,.2,1) .3s, background-color .25s ease; }
+.motion .in .bar, .motion .in .mini-bars span, .motion .g-row.in .g-bar { transform: none; }
+.motion .bar--after { transition-delay: .6s; }
+.motion .mini-years span { transform: scaleY(0); transform-origin: bottom; transition: transform .4s cubic-bezier(.3,1.6,.5,1); transition-delay: calc(.2s + var(--i, 0) * .06s); }
+.motion .in .mini-years span { transform: none; }
+.motion .mini-ruler span { scale: 0; transition: scale .5s cubic-bezier(.3,1.6,.5,1) .5s; }
+.motion .in .mini-ruler span { scale: 1; }
+.motion .node { opacity: 0; translate: -8px 0; transition: opacity .5s ease, translate .5s ease, transform .2s ease, border-color .2s ease, background-color .2s ease, box-shadow .2s ease; transition-delay: calc(var(--n, 0) * .09s + .15s), calc(var(--n, 0) * .09s + .15s), 0s, 0s, 0s, 0s; }
+.motion .in .node { opacity: 1; translate: 0 0; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
@@ -1147,6 +1264,78 @@ h3 {
   }, { passive: true });
   window.addEventListener('resize', update);
   update();
+
+  // Scroll reveals, count-up figures and pointer-following hero shapes (skipped when motion is reduced)
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hot = document.querySelector('.compose');
+  if (hot) {
+    ['consult', 'build', 'auto'].forEach(function (k) {
+      var el = hot.querySelector('.c-' + k);
+      if (!el) return;
+      el.addEventListener('pointerenter', function () { hot.setAttribute('data-hot', k); });
+      el.addEventListener('pointerleave', function () { hot.removeAttribute('data-hot'); });
+    });
+  }
+  if (reduce || !('IntersectionObserver' in window)) return;
+  var root = document.documentElement;
+  root.classList.add('motion');
+  function mark(list, cls, step) {
+    Array.prototype.forEach.call(list, function (el, i) {
+      el.classList.add('rv');
+      if (cls) el.classList.add(cls);
+      if (step) el.style.setProperty('--d', (i * step).toFixed(2) + 's');
+    });
+  }
+  mark(document.querySelectorAll('.hero .roles, .hero .statement, .hero .lede, .hero .cta, .hero .compose, .hero .facts'), null, .12);
+  mark(document.querySelectorAll('.ledger .metric'), null, .1);
+  mark(document.querySelectorAll('.sec-head'));
+  Array.prototype.forEach.call(document.querySelectorAll('.split > :not(.sec-head)'), function (col) {
+    mark(col.children, null, 0);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.stepper, .gantt, .edu, .data tbody, .stages, .lab'), function (list) {
+    mark(list.children, 'rv-sub', .08);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.flow, .hub'), function (f) {
+    Array.prototype.forEach.call(f.querySelectorAll('.node'), function (n, i) { n.style.setProperty('--n', i); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.mini-years span'), function (s, i) { s.style.setProperty('--i', i); });
+
+  function countUp(el) {
+    var text = el.textContent, m = text.match(/\d+/);
+    if (!m) return;
+    var end = parseInt(m[0], 10), t0 = null;
+    function frame(t) {
+      if (t0 === null) t0 = t;
+      var k = Math.min(1, (t - t0) / 1100), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = text.replace(m[0], String(Math.round(end * e)));
+      if (k < 1) window.requestAnimationFrame(frame); else el.textContent = text;
+    }
+    window.requestAnimationFrame(frame);
+    // Paused tabs can stop animation frames; always land on the real figure
+    setTimeout(function () { el.textContent = text; }, 1300);
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      en.target.classList.add('in');
+      var num = en.target.querySelector && en.target.querySelector('.fig-num');
+      if (num) countUp(num);
+      io.unobserve(en.target);
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  Array.prototype.forEach.call(document.querySelectorAll('.rv'), function (el) { io.observe(el); });
+
+  if (hot && window.matchMedia('(pointer: fine)').matches) {
+    var hero = document.querySelector('.hero');
+    hero.addEventListener('pointermove', function (e) {
+      var r = hot.getBoundingClientRect();
+      var x = (e.clientX - (r.left + r.width / 2)) / window.innerWidth;
+      var y = (e.clientY - (r.top + r.height / 2)) / window.innerHeight;
+      hot.style.setProperty('--px', Math.max(-1, Math.min(1, x * 2)).toFixed(3));
+      hot.style.setProperty('--py', Math.max(-1, Math.min(1, y * 2)).toFixed(3));
+    });
+    hero.addEventListener('pointerleave', function () { hot.style.setProperty('--px', 0); hot.style.setProperty('--py', 0); });
+  }
 })();
 </script>
 </body>
