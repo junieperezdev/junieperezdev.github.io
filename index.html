@@ -27,6 +27,9 @@
 <meta property="og:image:alt" content="Junie Perez: IT Consultant, Senior Software Engineer, AI Automation Engineer">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="description" content="IT Consultant, Senior Software Engineer and AI Automation Engineer. Business software, integrations and AI automation for clients in the Philippines and overseas.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Junie Perez","url":"https://junieperezdev.github.io/","email":"mailto:junieperez.dev@gmail.com","jobTitle":["IT Consultant","Senior Software Engineer","AI Automation Engineer"],"address":{"@type":"PostalAddress","addressCountry":"PH"},"knowsLanguage":["en","fil","ja"],"knowsAbout":["C#",".NET","Python","TypeScript","Playwright","Business process automation","AI automation","Systems integration"]}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -181,6 +184,9 @@ h3 {
 @media (max-width: 860px) {
   .nav-n { display: none; }
   .head-nav { gap: 2px 16px; }
+  /* The section links scroll sideways on phones; Contact stays pinned at the right edge so it is never off screen */
+  .head-nav .nav-cta { position: sticky; right: 0; box-shadow: -16px 0 12px -4px var(--bg); }
+  .head-nav .nav-cta:not(:hover):not([aria-current="location"]) { background: var(--bg); }
 }
 
 /* Hero */
@@ -292,6 +298,8 @@ h3 {
 }
 @media (max-width: 560px) {
   .hero-side { grid-template-columns: minmax(0, 1fr); }
+  /* On phones the drawing would fill a whole screen before the track record; the role list above already shows the three shapes */
+  .compose { display: none; }
 }
 
 /* Sections */
@@ -837,7 +845,7 @@ h3 {
     </a>
     <nav class="head-nav" aria-label="Sections">
       <a href="#services"><span class="nav-n">01</span>Services</a>
-      <a href="#clients"><span class="nav-n">02</span>Clients</a>
+      <a href="#clients"><span class="nav-n">02</span>Industries</a>
       <a href="#work"><span class="nav-n">03</span>Work</a>
       <a href="#process"><span class="nav-n">04</span>Process</a>
       <a href="#about"><span class="nav-n">05</span>About</a>
@@ -917,7 +925,7 @@ h3 {
         <div class="metric">
           <p class="fig-num">~6 mo</p>
           <div class="mini mini-ruler" aria-hidden="true"><span class="m-done"></span><span class="m-plan"></span></div>
-          <p class="cap">ahead of schedule on a programme I helped deliver</p>
+          <p class="cap">ahead of schedule: a programme planned for March 2027, delivered September 2026</p>
         </div>
         <div class="metric">
           <p class="fig-num">&lt;20 ms</p>
@@ -1029,7 +1037,7 @@ h3 {
   <section class="sec" id="clients" aria-labelledby="clients-h">
     <div class="wrap split">
       <header class="sec-head">
-        <p class="label sec-label"><span class="sec-n">02</span>Clients</p>
+        <p class="label sec-label"><span class="sec-n">02</span>Industries</p>
         <h2 id="clients-h">Businesses I help</h2>
         <p class="intro">Small and mid-size businesses in the Philippines and overseas, and software teams that need senior help.</p>
       </header>
@@ -1101,7 +1109,7 @@ h3 {
           <dl class="sheet">
             <div><dt>Before</dt><dd>AI tools were not part of how the team worked. Deployment was already automated.</dd></div>
             <div><dt>Change</dt><dd>GitHub Copilot, Claude Code and Cursor used across the whole cycle, from requirements and stories to design, code, shared test templates and aftercare.</dd></div>
-            <div><dt>Result</dt><dd class="result">More than 50% less end-to-end effort. Helped deliver a programme about six months ahead of schedule. Presented the approach to executive leadership and a company-wide audience.</dd></div>
+            <div><dt>Result</dt><dd class="result">More than 50% less end-to-end effort. Helped deliver a programme about six months ahead of schedule, in September 2026 instead of March 2027. Presented the approach to executive leadership and a company-wide audience.</dd></div>
             <div><dt>Stack</dt><dd class="tools">C# · .NET · Python · TypeScript · Azure DevOps · GitHub</dd></div>
           </dl>
         </article>
@@ -1464,6 +1472,7 @@ h3 {
   // Scroll reveals
   function mark(list, step) {
     each(list, function (el, i) {
+      if (!el.getClientRects().length) return; // not displayed at this width (e.g. the hero drawing on phones)
       el.classList.add('rv');
       if (step) el.style.setProperty('--d', (i * step).toFixed(2) + 's');
     });
