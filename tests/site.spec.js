@@ -23,66 +23,100 @@ async function scrollThrough(page) {
   });
 }
 
-test('loads without console errors', async ({ page }) => {
-  const errors = [];
-  page.on('pageerror', (e) => errors.push(e.message));
-  page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
-  await page.goto('/');
-  await scrollThrough(page);
-  expect(errors).toEqual([]);
-});
+// The public root page, plus the two unlisted copies sent to clients (NZ and PH)
+const PAGES = ['/', '/nz-954eb6b6af/', '/ph-8f8e359ebe/'];
 
-test('never scrolls sideways', async ({ page }) => {
-  await page.goto('/');
-  await scrollThrough(page);
-  const [scrollW, viewW] = await page.evaluate(() => [document.documentElement.scrollWidth, window.innerWidth]);
-  expect(scrollW).toBeLessThanOrEqual(viewW);
-});
-
-test('every section is revealed after scrolling', async ({ page }) => {
-  await page.goto('/');
-  await scrollThrough(page);
-  await expect.poll(() => page.locator('.rv:not(.in)').count()).toBe(0);
-});
-
-test('headline is visible on first paint, never faded in', async ({ page }) => {
-  await page.goto('/');
-  await expect(page.locator('.statement')).not.toHaveClass(/\brv\b/);
-  expect(await page.locator('.statement').evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
-});
-
-test('track-record figures end on their real values', async ({ page }) => {
-  await page.goto('/');
-  await page.waitForTimeout(1500);
-  await expect(page.locator('.fig-num')).toHaveText(['12 yrs', '>50%', '~6 mo', '<20 ms']);
-});
-
-test('pause button stops every loop and is remembered', async ({ page }) => {
-  await page.goto('/');
-  const toggle = page.locator('#motion-toggle');
-  await expect(toggle).toBeVisible();
-  await toggle.click();
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-  const running = () => page.evaluate(() =>
-    document.getAnimations().filter((a) => a.playState === 'running' && a.effect.getTiming().iterations === Infinity).length);
-  expect(await running()).toBe(0);
-  await page.reload();
-  await expect(page.locator('html')).toHaveClass(/\bpaused\b/);
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-});
-
-test.describe('reduced motion', () => {
-  test.use({ reducedMotion: 'reduce' });
-
-  test('shows everything without scrolling, runs no animation, hides the pause button', async ({ page }) => {
-    await page.goto('/');
-    expect(await page.evaluate(() => document.documentElement.classList.contains('motion'))).toBe(false);
-    await expect(page.locator('#motion-toggle')).toBeHidden();
-    const hidden = await page.evaluate(() =>
-      [...document.querySelectorAll('section *')].filter((el) => getComputedStyle(el).opacity === '0').length);
-    expect(hidden).toBe(0);
-    expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
+for (const path of PAGES) {
+test.describe(path, () => {
+  test('loads without console errors', async ({ page }) => {
+    const errors = [];
+    page.on('pageerror', (e) => errors.push(e.message));
+    page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
+    await page.goto(path);
+    await scrollThrough(page);
+    expect(errors).toEqual([]);
   });
+
+  test('never scrolls sideways', async ({ page }) => {
+    await page.goto(path);
+    await scrollThrough(page);
+    const [scrollW, viewW] = await page.evaluate(() => [document.documentElement.scrollWidth, window.innerWidth]);
+    expect(scrollW).toBeLessThanOrEqual(viewW);
+  });
+
+  test('every section is revealed after scrolling', async ({ page }) => {
+    await page.goto(path);
+    await scrollThrough(page);
+    await expect.poll(() => page.locator('.rv:not(.in)').count()).toBe(0);
+  });
+
+  test('headline is visible on first paint, never faded in', async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator('.statement')).not.toHaveClass(/\brv\b/);
+    expect(await page.locator('.statement').evaluate((el) => getComputedStyle(el).opacity)).toBe('1');
+  });
+
+  test('track-record figures end on their real values', async ({ page }) => {
+    await page.goto(path);
+    await page.waitForTimeout(1500);
+    await expect(page.locator('.fig-num')).toHaveText(['12 yrs', '>50%', '~6 mo', '<20 ms']);
+  });
+
+  test('pause button stops every loop and is remembered', async ({ page }) => {
+    await page.goto(path);
+    const toggle = page.locator('#motion-toggle');
+    await expect(toggle).toBeVisible();
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+    const running = () => page.evaluate(() =>
+      document.getAnimations().filter((a) => a.playState === 'running' && a.effect.getTiming().iterations === Infinity).length);
+    expect(await running()).toBe(0);
+    await page.reload();
+    await expect(page.locator('html')).toHaveClass(/\bpaused\b/);
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  });
+
+  test.describe('reduced motion', () => {
+    test.use({ reducedMotion: 'reduce' });
+
+    test('shows everything without scrolling, runs no animation, hides the pause button', async ({ page }) => {
+      await page.goto(path);
+      expect(await page.evaluate(() => document.documentElement.classList.contains('motion'))).toBe(false);
+      await expect(page.locator('#motion-toggle')).toBeHidden();
+      const hidden = await page.evaluate(() =>
+        [...document.querySelectorAll('section *')].filter((el) => getComputedStyle(el).opacity === '0').length);
+      expect(hidden).toBe(0);
+      expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
+    });
+  });
+
+  for (const scheme of ['light', 'dark']) {
+    test(`filled badges meet 4.5:1 contrast in ${scheme} mode`, async ({ page }) => {
+      await page.emulateMedia({ colorScheme: scheme });
+      await page.goto(path);
+      await scrollThrough(page);
+      await page.waitForTimeout(1500); // let the colour transitions finish
+      const pairs = await page.evaluate(() =>
+        [...document.querySelectorAll('.sec-head.in .sec-n, .stepper li.in .st-n')].map((el) => {
+          const cs = getComputedStyle(el);
+          return [cs.color, cs.backgroundColor];
+        }));
+      expect(pairs.length).toBeGreaterThan(0);
+      for (const [fg, bg] of pairs) expect(contrast(fg, bg)).toBeGreaterThanOrEqual(4.5);
+    });
+  }
+
+  test('contact offers email, a free call and Messenger', async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator('#email')).toHaveText('junieperez.dev@gmail.com');
+    await expect(page.locator('.contact-actions a[href^="mailto:junieperez.dev@gmail.com"]')).toBeVisible();
+    await expect(page.locator('.contact-actions a[href="https://m.me/junieperez.dev"]')).toBeVisible();
+  });
+});
+}
+
+test.describe('reduced motion, root page', () => {
+  test.use({ reducedMotion: 'reduce' });
 
   // Baselines come from GitHub's runner (Update screenshots workflow); until they exist this test is skipped
   test('full-page screenshot', async ({ page }, info) => {
@@ -93,25 +127,19 @@ test.describe('reduced motion', () => {
   });
 });
 
-for (const scheme of ['light', 'dark']) {
-  test(`filled badges meet 4.5:1 contrast in ${scheme} mode`, async ({ page }) => {
-    await page.emulateMedia({ colorScheme: scheme });
-    await page.goto('/');
-    await scrollThrough(page);
-    await page.waitForTimeout(1500); // let the colour transitions finish
-    const pairs = await page.evaluate(() =>
-      [...document.querySelectorAll('.sec-head.in .sec-n, .stepper li.in .st-n')].map((el) => {
-        const cs = getComputedStyle(el);
-        return [cs.color, cs.backgroundColor];
-      }));
-    expect(pairs.length).toBeGreaterThan(0);
-    for (const [fg, bg] of pairs) expect(contrast(fg, bg)).toBeGreaterThanOrEqual(4.5);
-  });
-}
-
-test('contact offers email, a free call and Messenger', async ({ page }) => {
+test('unlisted pages stay out of search results', async ({ page }) => {
+  for (const path of PAGES.slice(1)) {
+    await page.goto(path);
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', /noindex/);
+  }
   await page.goto('/');
-  await expect(page.locator('#email')).toHaveText('junieperez.dev@gmail.com');
-  await expect(page.locator('.contact-actions a[href^="mailto:junieperez.dev@gmail.com"]')).toBeVisible();
-  await expect(page.locator('.contact-actions a[href="https://m.me/junieperez.dev"]')).toBeVisible();
+  await expect(page.locator('meta[name="robots"]')).toHaveCount(0);
+});
+
+test('NZ page shows live clocks, a CV request and a share button', async ({ page }) => {
+  await page.goto('/nz-954eb6b6af/');
+  await expect(page.locator('#clock-nz')).toHaveText(/\d{1,2}:\d{2}\s?(am|pm)/);
+  await expect(page.locator('#clock-ph')).toHaveText(/\d{1,2}:\d{2}\s?(am|pm)/);
+  await expect(page.locator('.hire-actions a[href^="mailto:junieperez.dev@gmail.com?subject=CV"]')).toBeVisible();
+  await expect(page.locator('#share-page')).toBeVisible();
 });
