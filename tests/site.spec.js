@@ -24,7 +24,7 @@ async function scrollThrough(page) {
 }
 
 // The public root page, plus the two unlisted copies sent to clients (NZ and PH)
-const PAGES = ['/', '/nz-954eb6b6af/', '/ph-8f8e359ebe/'];
+const PAGES = ['/', '/nz/', '/ph/'];
 
 for (const path of PAGES) {
 test.describe(path, () => {
@@ -137,9 +137,17 @@ test('unlisted pages stay out of search results', async ({ page }) => {
 });
 
 test('NZ page shows live clocks, a CV request and a share button', async ({ page }) => {
-  await page.goto('/nz-954eb6b6af/');
+  await page.goto('/nz/');
   await expect(page.locator('#clock-nz')).toHaveText(/\d{1,2}:\d{2}\s?(am|pm)/);
   await expect(page.locator('#clock-ph')).toHaveText(/\d{1,2}:\d{2}\s?(am|pm)/);
   await expect(page.locator('.hire-actions a[href^="mailto:junieperez.dev@gmail.com?subject=CV"]')).toBeVisible();
   await expect(page.locator('#share-page')).toBeVisible();
+});
+
+test('the first unlisted links still land on the readable pages', async ({ page }) => {
+  for (const [from, to] of [['/nz-954eb6b6af/', '/nz/'], ['/ph-8f8e359ebe/', '/ph/']]) {
+    await page.goto(from);
+    await expect(page).toHaveURL(new RegExp(to + '$'));
+    await expect(page.locator('.statement')).toBeVisible();
+  }
 });
